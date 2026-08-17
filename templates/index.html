@@ -110,7 +110,30 @@ async function startStream(){
 async function openCamera(){document.getElementById('cam').style.display='flex';await startStream()}
 async function flipCamera(){facingMode=(facingMode==='environment')?'user':'environment';await startStream()}
 function closeCamera(){if(stream)stream.getTracks().forEach(t=>t.stop());document.getElementById('cam').style.display='none'}
-async function capture(){let v=document.getElementById('video'),c=document.getElementById('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);c.toBlob(async b=>{let fd=new FormData();fd.append('image',b,'camera.jpg');let r=await fetch('/detect-camera',{method:'POST',body:fd});let d=await r.json();let box=document.getElementById('camResult');if(!d.ok){box.innerHTML='<p class="error">'+d.error+'</p>';return}if(d.unknown){box.innerHTML='<div class="error"><b>⚠️ {{ texts.unknown }}</b><br>'+d.message+'<br>Confidence: '+d.confidence.toFixed(2)+'%</div>'}else{box.innerHTML='<div class="weatherbox"><b>🌱 '+d.plant+'</b><br>'+d.class+'<br><b>'+d.confidence.toFixed(2)+'%</b>'+(d.gemini?'<br><span class="small">🤖 Gemini AI fallback</span>':'')+(d.gemini_result&&d.gemini_result.explanation?'<br>'+escapeHtml(d.gemini_result.explanation):'')+'</div>'}},'image/jpeg',.92)}
+async function capture(){
+  let v=document.getElementById('video'),c=document.getElementById('canvas');
+  if(!v.videoWidth||!v.videoHeight){
+    document.getElementById('camResult').innerHTML='<p class="error">Camera abhi taiyar nahi hai, 1-2 second ruko phir dubara try karo.</p>';
+    return;
+  }
+  c.width=v.videoWidth;c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  document.getElementById('camResult').innerHTML='<p>⏳ Processing...</p>';
+  c.toBlob(async b=>{
+    if(!b){document.getElementById('camResult').innerHTML='<p class="error">Photo capture fail hui, dubara try karo.</p>';return}
+    let fd=new FormData();fd.append('image',b,'camera.jpg');
+    let box=document.getElementById('camResult');
+    try{
+      let r=await fetch('/detect-camera',{method:'POST',body:fd});
+      let d=await r.json();
+      if(!d.ok){box.innerHTML='<p class="error">'+d.error+'</p>';return}
+      if(d.unknown){box.innerHTML='<div class="error"><b>⚠️ {{ texts.unknown }}</b><br>'+d.message+'<br>Confidence: '+d.confidence.toFixed(2)+'%</div>'}
+      else{box.innerHTML='<div class="weatherbox"><b>🌱 '+d.plant+'</b><br>'+d.class+'<br><b>'+d.confidence.toFixed(2)+'%</b>'+(d.gemini?'<br><span class="small">🤖 Gemini AI fallback</span>':'')+(d.gemini_result&&d.gemini_result.explanation?'<br>'+escapeHtml(d.gemini_result.explanation):'')+'</div>'}
+    }catch(err){
+      box.innerHTML='<p class="error">Network error, dubara try karo: '+err.message+'</p>';
+    }
+  },'image/jpeg',.92)
+}
 let chatHistory=[];
 document.getElementById('chatForm').addEventListener('submit',async function(e){
  e.preventDefault();
