@@ -1,0 +1,15 @@
+flask
+numpy==1.26.4
+pillow
+tensorflow==2.17.1
+gunicorn>=21.2.0
+
+deep-translator>=1.11.4
+langdetect>=1.0.9
+google-genai>=1.30.0
+python-dotenv>=1.0.1
+
+# MySQL driver (pure-Python, no system MySQL client libraries needed)
+PyMySQL>=1.1.0
+
+requests>=2.31.0

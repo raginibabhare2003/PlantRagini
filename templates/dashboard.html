@@ -1,0 +1,68 @@
+<!doctype html><html lang="{{ language }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Smart Crop AI</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial,'Noto Sans Devanagari',sans-serif;background:#f0fdf4;color:#17251b}nav{background:#14532d;color:white;padding:14px 4%;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 3px 14px #0002}.brand{font-size:21px;font-weight:800;margin-right:auto}.nav a,.nav select{color:#14532d;background:white;padding:9px 12px;border-radius:8px;text-decoration:none;border:0;font-weight:700}.wrap{width:92%;max-width:1150px;margin:30px auto}.hero{text-align:center;padding:20px}.hero h1{font-size:38px;color:#14532d;margin:10px}.hero p{font-size:17px;color:#52625a}.card{background:white;padding:26px;border-radius:18px;margin:20px 0;box-shadow:0 8px 25px #00000010}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}.upload{border:2px dashed #22c55e;background:#f0fdf4;padding:35px;text-align:center;border-radius:15px}.btn{display:inline-block;border:0;background:#15803d;color:white;padding:12px 18px;border-radius:9px;font-weight:700;cursor:pointer;text-decoration:none}.btn.alt{background:#475569}.btn.red{background:#dc2626}.full{width:100%;margin-top:15px}.preview{max-width:100%;max-height:360px;border-radius:14px;margin-top:18px}.result{border-left:6px solid #16a34a}.unknown{border-left-color:#f97316;background:#fff7ed}.pill{display:inline-block;background:#dcfce7;color:#166534;padding:8px 13px;border-radius:20px;font-weight:700}.info{background:#f8fafc;padding:18px;border-radius:12px}.info h3{color:#166534}.info li{margin:8px 0;line-height:1.5}.error{background:#fee2e2;color:#991b1b;padding:12px;border-radius:8px}.flash{padding:12px;border-radius:8px;background:#dcfce7;margin:10px 0}.flash.error{background:#fee2e2}.form{max-width:520px;margin:40px auto}.form input,.form textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #cbd5e1;border-radius:8px}.form textarea{min-height:140px}.small{color:#64748b;font-size:14px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:left}.camera{display:none;position:fixed;inset:0;background:#000d;z-index:9;align-items:center;justify-content:center;padding:15px}.cameraBox{background:white;border-radius:18px;padding:20px;width:min(700px,96%);text-align:center}.cameraBox video{width:100%;max-height:65vh;background:#111;border-radius:12px}.weatherbox{background:#ecfeff;border-left:5px solid #0891b2;padding:18px;border-radius:10px} .stat{padding:20px;background:#f0fdf4;border-radius:14px;text-align:center}.stat b{font-size:28px;color:#15803d}footer{margin-top:45px;padding:25px;text-align:center;background:#14532d;color:white}@media(max-width:700px){.brand{width:100%;text-align:center}.hero h1{font-size:29px}.card{padding:18px}.nav{justify-content:center}}</style>
+<style>
+:root{--green:#166534;--green2:#22c55e;--dark:#0f3d24;--mint:#ecfdf5;--cream:#f7faf7;--ink:#17251b;--muted:#64748b;--card:#ffffff;--border:#dce8df;--shadow:0 12px 32px rgba(15,61,36,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,'Noto Sans Devanagari',sans-serif;background:linear-gradient(180deg,#f0fdf4 0,#f8faf9 52%,#fff 100%);color:var(--ink)}
+.nav{position:sticky;top:0;z-index:50;background:rgba(15,61,36,.96);backdrop-filter:blur(12px);padding:12px 4%;display:flex;align-items:center;gap:8px;flex-wrap:wrap;box-shadow:0 6px 24px rgba(0,0,0,.14)}
+.brand{font-size:21px;font-weight:900;margin-right:auto;letter-spacing:-.3px;color:#fff}
+.nav a,.nav select{color:#14532d;background:#fff;padding:9px 11px;border-radius:10px;text-decoration:none;border:1px solid rgba(255,255,255,.25);font-weight:750;font-size:13px;transition:.2s}
+.nav a:hover{transform:translateY(-1px);background:#dcfce7}.nav select{max-width:165px;cursor:pointer}
+.wrap{width:92%;max-width:1180px;margin:28px auto}
+.hero{position:relative;overflow:hidden;text-align:center;padding:45px 25px;margin-bottom:20px;border-radius:26px;background:linear-gradient(135deg,#14532d,#15803d 58%,#22c55e);color:#fff;box-shadow:0 18px 45px rgba(20,83,45,.22)}
+.hero:after{content:"🌿";position:absolute;right:7%;bottom:-18px;font-size:90px;opacity:.14;transform:rotate(-12deg)}
+.hero h1{font-size:42px;margin:8px;color:#fff;letter-spacing:-1px}.hero p{font-size:17px;color:#dcfce7;max-width:780px;margin:12px auto;line-height:1.6}
+.card{background:rgba(255,255,255,.96);padding:28px;border:1px solid var(--border);border-radius:22px;margin:20px 0;box-shadow:var(--shadow);scroll-margin-top:90px}
+.card h2{margin-top:0;color:var(--dark)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.upload{border:2px dashed #4ade80;background:linear-gradient(180deg,#f0fdf4,#fff);padding:38px;text-align:center;border-radius:18px;transition:.2s}
+.upload:hover{border-color:#15803d;transform:translateY(-2px)}.btn{display:inline-block;border:0;background:linear-gradient(135deg,#15803d,#16a34a);color:#fff;padding:12px 18px;border-radius:11px;font-weight:800;cursor:pointer;text-decoration:none;box-shadow:0 7px 18px rgba(21,128,61,.18);transition:.2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.03)}.btn.alt{background:#475569}.btn.red{background:#dc2626}.full{width:100%;margin-top:15px}
+.preview{max-width:100%;max-height:360px;border-radius:16px;margin-top:18px;box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.result{border-left:6px solid #16a34a}.unknown{border-left-color:#f97316;background:#fff7ed}.pill{display:inline-block;background:#dcfce7;color:#166534;padding:8px 13px;border-radius:20px;font-weight:800}
+.info{background:linear-gradient(180deg,#f8fafc,#fff);padding:20px;border:1px solid #e2e8f0;border-radius:16px;transition:.2s}.info:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.info h3{color:#166534;margin-top:0}.info li{margin:9px 0;line-height:1.55}.error{background:#fee2e2;color:#991b1b;padding:13px;border-radius:11px;border:1px solid #fecaca}
+.flash{padding:13px;border-radius:11px;background:#dcfce7;margin:10px 0}.flash.error{background:#fee2e2}.form{max-width:520px;margin:40px auto}
+.form input,.form textarea,input{padding:12px;border:1px solid #cbd5e1;border-radius:10px}.form input,.form textarea{width:100%;margin:7px 0 15px}.form textarea{min-height:140px}.small{color:#64748b;font-size:14px}
+.table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}.table th,.table td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:left}
+.camera{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:90;align-items:center;justify-content:center;padding:15px}.cameraBox{background:white;border-radius:22px;padding:22px;width:min(700px,96%);text-align:center;box-shadow:0 20px 60px #0008}.cameraBox video{width:100%;max-height:65vh;background:#111;border-radius:14px}
+.weatherbox{background:linear-gradient(135deg,#ecfeff,#f0fdf4);border-left:5px solid #0891b2;padding:18px;border-radius:13px}
+.stat{padding:20px;background:#f0fdf4;border:1px solid #dcfce7;border-radius:16px;text-align:center}.stat b{font-size:28px;color:#15803d}
+footer{margin-top:45px;padding:28px;text-align:center;background:#0f3d24;color:#dcfce7}
+.section-label{display:inline-block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#16a34a;font-weight:900;margin-bottom:7px}
+@media(max-width:980px){.nav a{font-size:12px;padding:8px 9px}.nav select{max-width:140px}}
+@media(max-width:700px){.brand{width:100%;text-align:center;margin-bottom:4px}.hero h1{font-size:30px}.card{padding:19px;border-radius:18px}.nav{justify-content:center}.nav a{font-size:12px}.nav select{max-width:100%;width:100%}.wrap{width:94%}}
+.nav-logo{display:flex;align-items:center;gap:10px;margin-right:auto;text-decoration:none}
+.nav-logo .badge{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#22c55e,#15803d);display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 6px 16px rgba(21,128,61,.35);flex:none}
+.nav-logo .brandtext{display:flex;flex-direction:column;line-height:1.15}
+.nav-logo .brandtext b{color:#fff;font-size:18px;font-weight:900;letter-spacing:-.3px}
+.nav-logo .brandtext span{color:#bbf7d0;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nav a.is-active{background:#0f3d24;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);cursor:pointer;flex:none}
+.nav-toggle span{display:block;width:18px;height:2px;background:#fff;border-radius:2px}
+.nav-lang{font-weight:700}
+@media(max-width:980px){
+.nav-toggle{display:flex}
+.nav-links{display:none;width:100%;order:3;flex-direction:column;align-items:stretch;background:rgba(15,61,36,.98);border-radius:14px;padding:10px;margin-top:8px}
+.nav-links.open{display:flex}
+.nav-links a,.nav-links select{width:100%;text-align:left}
+}
+</style>
+</head><body>
+<nav class="nav">
+<a class="nav-logo" href="{{ url_for('home') }}"><span class="badge">🌱</span><span class="brandtext"><b>{{ texts.brand }}</b><span>Smart Farming AI</span></span></a>
+<button class="nav-toggle" type="button" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+<div class="nav-links">
+<a href="{{ url_for('home') }}" class="{{ 'is-active' if request.path=='/' else '' }}">🏠 {{ texts.home }}</a>
+<a href="{{ url_for('home') }}#detection">🔍 Detection</a>
+<a href="{{ url_for('home') }}#weather-section">🌦️ Weather</a>
+<a href="{{ url_for('home') }}#assistant">🤖 Assistant</a>
+<a href="{{ url_for('supported_plants') }}" class="{{ 'is-active' if request.path==url_for('supported_plants') else '' }}">🌾 Plants We Detect</a>
+<a href="{{ url_for('contact') }}" class="{{ 'is-active' if request.path==url_for('contact') else '' }}">📞 Contact</a>
+<a href="{{ url_for('suggestions') }}" class="{{ 'is-active' if request.path==url_for('suggestions') else '' }}">💡 Suggestions</a>
+<a href="{{ url_for('feedback') }}" class="{{ 'is-active' if request.path==url_for('feedback') else '' }}">⭐ {{ texts.feedback }}</a>
+<a href="{{ url_for('about') }}" class="{{ 'is-active' if request.path==url_for('about') else '' }}">ℹ️ {{ texts.about }}</a>
+{% if user %}<a href="{{ url_for('dashboard') }}">📊 {{ texts.dashboard }}</a>{% if is_admin %}<a href="{{ url_for('admin_panel') }}">🛠️ Admin</a>{% endif %}<a href="{{ url_for('logout') }}">🚪 {{ texts.logout }}</a>{% else %}<a href="{{ url_for('login') }}">🔐 {{ texts.login }}</a>{% endif %}
+<select class="nav-lang" onchange="location.href='/set-language/'+this.value" aria-label="Language">{% for code,name in languages %}<option value="{{code}}" {{ 'selected' if language==code else '' }}>{{name}}</option>{% endfor %}</select>
+</div>
+</nav>
+<div class="wrap">{% with messages=get_flashed_messages(with_categories=true) %}{% for cat,msg in messages %}<div class="flash {{cat}}">{{msg}}</div>{% endfor %}{% endwith %}<section class="hero"><h1>📊 {{ texts.dashboard_title }}</h1><p>{{ texts.welcome }}, {{ user }}!</p></section><div class="grid"><div class="stat"><b>{{scans|length}}</b><br>{{texts.history}}</div><div class="stat"><b>100+</b><br>{{texts.language}}</div><div class="stat"><b>📷</b><br>{{texts.camera}}</div></div><section class="card"><h2>{{texts.history}}</h2>{% if scans %}<table class="table"><tr><th>Date</th><th>{{texts.plant}}</th><th>{{texts.disease}}</th><th>{{texts.confidence}}</th><th>{{texts.status}}</th></tr>{% for s in scans %}<tr><td>{{s.created_at}}</td><td>{{s.plant}}</td><td>{{s.disease}}</td><td>{{"%.2f"|format(s.confidence or 0)}}%</td><td>{{s.status}}</td></tr>{% endfor %}</table>{% else %}<p>{{texts.no_history}}</p>{% endif %}</section></div><footer>🌱 Smart Crop AI • Farmer-first AI screening • {{ texts.safe_note }}</footer></body></html>

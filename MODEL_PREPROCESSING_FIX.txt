@@ -1,0 +1,4 @@
+FIX: PlantVillage TFLite model preprocessing
+The model contains an internal Rescaling layer, so input pixels must not be divided by 255 before inference.
+The fixed package removes the obvious /255 preprocessing pattern from app.py when present.
+If the app still rejects every image, run the model diagnostic from the project and inspect labels/input/output details.
